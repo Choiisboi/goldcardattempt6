@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-title>{{course?.name}}</mat-card-title>
+  <section>
+    <div>
+      <div>Hole</div>
+      <div *ngFor="let holes of course?.holes">
+        {{holes.hole}}
+      </div>
+      <div>In</div>
+      <div>Out</div>
+      <div>Total</div>
+
+    </div>
+    <div>
+      <div>Yards</div>
+      <div *ngFor="let holes of course?.holes">
+        {{holes.teeBoxes[selectedTeeType].yards}}
+      </div>
+
+    </div>
+    <div>
+      <div>Par</div>
+      <div *ngFor="let holes of course?.holes">
+        {{holes.teeBoxes[selectedTeeType].par}}
+      </div>
+
+    </div>
+    <div class="info-wrapper">
+      <div class="golf-block-header">Handicap</div>
+      <div class="golf-block" *ngFor="let holes of course?.holes">
+        {{holes.teeBoxes[selectedTeeType].hcp}}
+      </div>
+
+
+    </div>
+  </section>
+  <section *ngFor="let player of playerArray; let i = index">
+    <div>
+      <div class="player-block-header">{{player.name}}</div>
+      <input type="number" min="0" #test [id]="player.name + '_' + hole.hole " *ngFor="let hole of course?.holes" class="playerInput" (input) ="logScore(test.value, hole.hole, i)">
+      <div>{{player.inscore}}</div>
+      <div>{{player.outscore}}</div>
+      <div>{{player.totalscore}}</div>
+
+
+    </div>
+  </section>
+</mat-card>
+<mat-card>
+  <button mat-raised-button (click)="postGame()" color="primary">Post Game</button>
+</mat-card>

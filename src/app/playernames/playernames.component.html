@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-title>playerNames</mat-card-title>
+  <section *ngFor="let player of playerCount">
+    <p> player {{player + 1}}'s name: {{playerArray[player]?.name}}</p>
+  </section>
+
+  <mat-form-field>
+    <input placeholder="player name" matInput [(ngModel)]="playerName" >
+  </mat-form-field>
+  <button mat-raised-button (click)="logName()" [disabled]="disableButton">submit name</button>
+  <section>
+    <button mat-raised-button color="primary" (click)="nextPage()">Next</button>
+  </section>
+</mat-card>
